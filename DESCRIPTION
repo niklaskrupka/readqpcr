@@ -1,0 +1,16 @@
+Package: readqpcr
+Type: Package
+Title: Helper functions for qPCR analysis
+Version: 0.1.0
+Authors@R: person("Niklas", "Krupka", email = "niklas.krupka@gmail.com",
+                  role = c("aut", "cre"))
+Maintainer: Niklas Krupka <niklas.krupka@gmail.com>
+Description: Functions for reading Bio-Rad qPCR data files, performing 2^ddCT calculations and plotting data.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports: 
+  dplyr,
+  ggplot2,
+  readr,
+  tidyr

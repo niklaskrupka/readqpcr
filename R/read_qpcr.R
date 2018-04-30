@@ -50,7 +50,7 @@ read_qpcr <- function(datafolder,
   qpcr_data_collapsed <- qpcr_data %>%
     dplyr::group_by(Target, Sample, Content) %>%
     dplyr::summarize(Cq_mean = mean(Cq),
-                     Technical_replicates = dplyr::n(),
+                     Technical_replicates = n(),
                      Spread = max(Cq) - min(Cq),
                      SD = stats::sd(Cq)) %>%
     dplyr::ungroup()
@@ -62,7 +62,7 @@ read_qpcr <- function(datafolder,
     dplyr::filter(!is.na(Sample)) %>%
     tidyr::spread(key = "Target", value = "Cq_mean") %>%
     dplyr::mutate_if(is.double, dplyr::funs(dCt      = . - !!norm,
-                              `2^-dCt` = 2 ^(!!norm - .))) %>%
+                                            `2^-dCt` = 2 ^(!!norm - .))) %>%
     dplyr::left_join(metadata, by = "Sample")
   # Return the two tibbles
   message("Finished.")

@@ -25,10 +25,12 @@ plot_qpcr <- function(the_data,
     ggplot2::theme_minimal() +
     ggplot2::theme(axis.title.x = ggplot2::element_blank(),
                    axis.ticks.x = ggplot2::element_blank(),
-                   axis.text.x  = ggplot2::element_blank()) +
+                   axis.text.x  = ggplot2::element_blank(),
+                   strip.text.x = ggplot2::element_text(face = "italic")) +
     ggplot2::scale_colour_manual(values = c("#333333", "#d55e00")) +
     ggplot2::stat_summary(geom = "bar", fun.y = "mean", fill = NA, width = 0.8) +
     ggplot2::stat_summary(geom = "errorbar", fun.data = "mean_se", width = 0.2) +
     ggplot2::geom_jitter(width = 0.2, size = 2) +
-    ggplot2::facet_wrap(~Gene, scales = "free_y")
+    ggplot2::facet_wrap(~Gene, scales = "free_y", strip.position = "bottom") +
+    ggplot2::labs(y = paste0("Relative expression (", quo_name(norm), ")"))
 }
